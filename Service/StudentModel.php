@@ -59,7 +59,7 @@ class StudentModel extends Database
         return [
             'id' => $student->getId(),
             'name' => $student->getFirstName() . ' ' . $student->getLastName(),
-            'board' => Board::$typesFlipped[$student->getBoard()->getId()],
+            'board' => Board::$typesFlipped[$student->getBoard()->getType()],
             'grades' => implode(',', $gradeValues),
             'average_grade' => (string) $boardInstance->calculateAverageGrade($student),
             'final_result' => $boardInstance->hasPassed($student) ? 'Pass' : 'Fail'
@@ -92,6 +92,6 @@ class StudentModel extends Database
     {
         /** @var Board $board */
         $board = $student->getBoard();
-        return $this->getBoardInstanceFromType($board->getId());
+        return $this->getBoardInstanceFromType($board->getType());
     }
 }
