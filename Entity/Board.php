@@ -11,6 +11,13 @@ class Board
 {
     const TYPE_CSM = 'CSM';
     const TYPE_CSMB = 'CSMB';
+    const CSM_ID = 1;
+    const CSMB_ID = 2;
+
+    public static $types = [
+        self::TYPE_CSM => self::CSM_ID,
+        self::TYPE_CSMB => self::CSMB_ID,
+    ];
 
     /**
      * @ORM\Id
@@ -25,7 +32,7 @@ class Board
     private $student;
 
     /**
-     * @ORM\Column(name="type", type="string", length=10)
+     * @ORM\Column(name="type", type="integer")
      */
     private $type;
 
@@ -45,6 +52,22 @@ class Board
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStudent()
+    {
+        return $this->student;
+    }
+
+    /**
+     * @param mixed $student
+     */
+    public function setStudent($student): void
+    {
+        $this->student = $student;
     }
 
     /**

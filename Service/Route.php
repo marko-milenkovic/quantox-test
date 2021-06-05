@@ -28,6 +28,14 @@ class Route
             $routeCollector->addRoute('GET', '/quantox-test/', function () {
                 (new StudentController())->studentAction();
             });
+
+            $routeCollector->addRoute('POST', '/quantox-test/create-student', function () {
+                (new StudentController())->createStudentAction();
+            });
+
+            $routeCollector->addRoute('POST', '/quantox-test/add-student-grade', function () {
+                (new StudentController())->addGradeAction();
+            });
         });
     }
 
