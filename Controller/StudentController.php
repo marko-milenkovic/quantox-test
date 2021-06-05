@@ -11,9 +11,19 @@ class StudentController extends BaseController
         $studentModel = new StudentModel();
         /** @var Student $student */
         $student = $studentModel->getStudent();
-        $data = $studentModel->getData($student);
-        $returnType = $studentModel->getReturnType($student);
-        return $this->response($returnType, $data);
+
+        if ($student instanceof Student)
+        {
+            $data = $studentModel->getData($student);
+            $returnType = $studentModel->getReturnType($student);
+            return $this->response($returnType, $data);
+        }
+
+        return $this->response(
+            Constants::TYPE_ERROR,
+            [],
+            'Student not found'
+        );
     }
 
     /**
