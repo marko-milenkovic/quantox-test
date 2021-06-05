@@ -87,6 +87,22 @@ class Student
     }
 
     /**
+     * @return mixed
+     */
+    public function getBoard()
+    {
+        return $this->board;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrades()
+    {
+        return $this->grades;
+    }
+
+    /**
      * @return DateTime
      */
     public function getDate(): DateTime

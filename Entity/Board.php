@@ -19,6 +19,11 @@ class Board
         self::TYPE_CSMB => self::CSMB_ID,
     ];
 
+    public static $typesFlipped = [
+        self::CSM_ID => self::TYPE_CSM,
+        self::CSMB_ID => self::TYPE_CSMB,
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

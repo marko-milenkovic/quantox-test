@@ -9,5 +9,9 @@ spl_autoload_register(function ($className) {
         require_once './Template/' . $className . '.php';
     } elseif (file_exists('./Entity/' . $className . '.php')) {
         require_once './Entity/' . $className . '.php';
+    } elseif (file_exists('./Interface/' . $className . '.php')) {
+        require_once './Interface/' . $className . '.php';
+    } elseif (file_exists('./Trait/' . $className . '.php')) {
+        require_once './Trait/' . $className . '.php';
     }
 });

@@ -3,8 +3,8 @@
 
 abstract class BaseController
 {
-    public function json(bool $success, string $message, array $data = [], int $statusCode = 200): JsonResponse
+    public function response(string $type, array $data = [], string $message = ''): Response
     {
-        return new JsonResponse($success, $message, $data, $statusCode);
+        return new Response($type, $data, $message);
     }
 }

@@ -3,6 +3,7 @@
 
 class Constants
 {
-    const SUCCESS_MESSAGE = 'Successfully created data';
-    const FAILURE_MESSAGE = 'Failed to create data';
+    const TYPE_XML = 'xml';
+    const TYPE_JSON = 'json';
+    const TYPE_ERROR = 'error';
 }

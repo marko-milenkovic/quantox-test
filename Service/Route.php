@@ -5,7 +5,7 @@ use FastRoute\Dispatcher;
 
 class Route
 {
-    public function init()
+    public function init(): void
     {
         $dispatcher = $this->configureRoutes();
 
@@ -22,10 +22,13 @@ class Route
         $this->checkRoute($routeInfo);
     }
 
+    /**
+     * @return Dispatcher
+     */
     private function configureRoutes(): Dispatcher
     {
         return FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $routeCollector) {
-            $routeCollector->addRoute('GET', '/quantox-test/', function () {
+            $routeCollector->addRoute('GET', '/quantox-test/test', function () {
                 (new StudentController())->studentAction();
             });
 
@@ -39,7 +42,10 @@ class Route
         });
     }
 
-    private function checkRoute($routeInfo)
+    /**
+     * @param $routeInfo
+     */
+    private function checkRoute($routeInfo): void
     {
         switch ($routeInfo[0]) {
             case FastRoute\Dispatcher::NOT_FOUND:

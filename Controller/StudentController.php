@@ -3,43 +3,56 @@
 
 class StudentController extends BaseController
 {
-    public function studentAction()
+    /**
+     * @return Response
+     */
+    public function studentAction(): Response
     {
-
+        $studentModel = new StudentModel();
+        /** @var Student $student */
+        $student = $studentModel->getStudent();
+        $data = $studentModel->getData($student);
+        $returnType = $studentModel->getReturnType($student);
+        return $this->response($returnType, $data);
     }
 
-    public function createStudentAction(): JsonResponse
+    /**
+     * @return Response
+     */
+    public function createStudentAction(): Response
     {
         $studentModel = new StudentModel();
         $student = $studentModel->createStudent();
 
         if ($student instanceof Student)
         {
-            return $this->json(
-                true,
-                Constants::SUCCESS_MESSAGE,
+            return $this->response(
+                Constants::TYPE_JSON,
                 [
                     'student_id' => $student->getId()
                 ]
             );
         }
 
-        return $this->json(
-            false,
+        return $this->response(
+            Constants::TYPE_ERROR,
+            [],
             $student
         );
     }
 
-    public function addGradeAction(): JsonResponse
+    /**
+     * @return Response
+     */
+    public function addGradeAction(): Response
     {
         $gradeModel = new GradeModel();
         $grade = $gradeModel->addStudentGrade();
 
         if ($grade instanceof Grade)
         {
-            return $this->json(
-                true,
-                Constants::SUCCESS_MESSAGE,
+            return $this->response(
+                Constants::TYPE_JSON,
                 [
                     'grade_id' => $grade->getId(),
                     'student_id' => $grade->getStudent()->getId()
@@ -47,8 +60,9 @@ class StudentController extends BaseController
             );
         }
 
-        return $this->json(
-            false,
+        return $this->response(
+            Constants::TYPE_ERROR,
+            [],
             $grade
         );
     }

@@ -3,20 +3,15 @@
 
 class JsonResponse
 {
-    private array $jsonObject;
+    private string $jsonObject;
 
-    public function __construct(bool $success, string $message, array $data = [], int $statusCode = 200)
+    public function __construct(array $data = [])
     {
-        $this->jsonObject = [
-            'success' => $success,
-            'message' => $message,
-            'data' => $data,
-            'statusCode' => $statusCode,
-        ];
+        $this->jsonObject = json_encode($data, JSON_PRETTY_PRINT);
     }
 
     public function __destruct()
     {
-        echo json_encode($this->jsonObject, JSON_PRETTY_PRINT);
+        echo $this->jsonObject;
     }
 }

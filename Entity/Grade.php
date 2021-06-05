@@ -17,7 +17,7 @@ class Grade
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Student", inversedBy="grades")
+     * @ORM\ManyToOne(targetEntity="Student", inversedBy="grades", fetch="EXTRA_LAZY")
      */
     private $student;
 
